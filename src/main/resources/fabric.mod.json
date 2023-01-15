@@ -1,25 +1,31 @@
 {
   "schemaVersion": 1,
-  "id": "chatcalc",
+  "id": "chatqalc",
   "version": "${version}",
 
-  "name": "ChatCalc",
-  "description": "A simple mod that turns your chat into a calculator.",
+  "name": "ChatQalc!",
+  "description": "A simple mod that turns your chat into a qalc (calculator) interface.",
   "authors": [
-    "RTTV",
-	"Kokeria"
+    "vlad2305m"
   ],
   "contact": {
-    "sources": "https://github.com/RealRTTV/chatcalc"
+    "sources": "https://github.com/vlad2305m/chat-qalc"
   },
 
-  "license": "MPL-2.0",
-  "icon": "assets/chatcalc/icon.png",
+  "license": "GPLv3",
+  "icon": "assets/chatqalc/icon.png",
 
   "environment": "client",
-  "entrypoints": {},
+  "entrypoints": {
+    "client": [
+      "com.vlad2305m.chatqalc.ChatQalc"
+    ],
+    "modmenu": [
+      "com.vlad2305m.chatqalc.ModMenuIntegration"
+    ]
+  },
   "mixins": [
-    "chatcalc.mixins.json"
+    "chatqalc.mixins.json"
   ],
 
   "depends": {
