@@ -5,7 +5,9 @@ An interface to [Qalculate! qalc](https://github.com/Qalculate/libqalculate#read
 
 #### Commands to execute on first use:
 To run a command, type it in chat and press `Ctrl+Enter`
+
 `set mulsign 1` changes multiplication sign from × (same as letter x in MC) to ⋅
+
 `chunk:=16`, `chunks:=16` - set variables you'd like to use some time (or not)
 
 ### Features
@@ -16,6 +18,7 @@ To run a command, type it in chat and press `Ctrl+Enter`
 - `Shift+Enter` = Send message to qalc and replace chat field with last line of the result (You can look at the result and decide to share it with everybody by pressing `Enter`)
 - `Ctrl+Shift+Enter` = Same as `Ctrl+Enter`, but result is broadcast from your name to the whole server. And without colors. (Use when you want to share multiple lines)
 - `Shift+Tab` = Get completions
+- Chat history of your queries. Very helpful.
 - Open config in ModMenu to get a graphical interface. All settings are there. (Edit -> Preferences)
 
 ### Qalculate! features
