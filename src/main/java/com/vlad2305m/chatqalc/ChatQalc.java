@@ -93,8 +93,11 @@ public class ChatQalc implements ClientModInitializer {
         if (originalText.isBlank()) return false;
         TriConsumer<Text, MessageSignatureData, MessageIndicator> textConsumer = MinecraftClient.getInstance().inGameHud.getChatHud()::addMessage;
         MathEngine.addMessage = (s)->{
-            if (s!=null && !s.isBlank() && !s.equals("  \033[0;36m0\033[0m = \033[0;36m0\033[0m"))
-                textConsumer.accept(Text.literal(reformatAnsiMinecraft(s.replace("\010", ""))), null, new MessageIndicator(15677346, null, Text.literal("Qalculate!"), "chatqalc"));
+            if (s!=null && !s.isBlank() && !s.equals("  \033[0;36m0\033[0m = \033[0;36m0\033[0m")) {
+                s = s.replace("\010", "");
+                if (s.length() > 1 && s.charAt(0)=='>') field.setText(stripAnsi(s.substring(1).strip()));
+                else textConsumer.accept(Text.literal(reformatAnsiMinecraft(s)), null, new MessageIndicator(15677346, null, Text.literal("Qalculate!"), "chatqalc"));
+            }
         };
         MathEngine.tabComp(originalText);
         return true;
