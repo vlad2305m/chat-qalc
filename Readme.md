@@ -5,6 +5,7 @@ https://www.curseforge.com/minecraft/mc-mods/chatqalc
 An interface to [Qalculate! qalc](https://github.com/Qalculate/libqalculate#readme) - the best cli calculator. (Included for Windows/Linux)
 ![](https://camo.githubusercontent.com/a9c9f614b77ffdafc7b32741cbdd0a0b2288bb110c5bb3a1cba4c17e344ad24f/687474703a2f2f71616c63756c6174652e6769746875622e696f2f696d616765732f71616c632e706e67)
 
+#### Tell me if it works on lower Minecraft versions
 ### Features
 - Installs and runs portable interactive `qalc` cli calculator when you start Minecraft
 - Operates in chat screen (`T` or `/`)
@@ -19,7 +20,9 @@ An interface to [Qalculate! qalc](https://github.com/Qalculate/libqalculate#read
 
 ### Qalculate! features
 https://qalculate.github.io/features.html
+
 Manual: https://qalculate.github.io/manual/qalc.html
+
 Most notably:
 - Use `to` for unit conversion (`1km to m = 1000 m`)
 - Fault-tolerant parsing of strings (almost natural language)
@@ -29,3 +32,5 @@ Most notably:
 - Functions, Units, Variables, Constants (persistent between restarts)
 - Gnuplot (opens a new window with plot, you have to install GNUplot separately for it to work)
 - Comments start with `#`
+
+You can get a 30KB noinstall version if you [install](https://qalculate.github.io/downloads.html) or link Qalculate to `./minecraft/config/chatqalc/` manually or run the full version once.
