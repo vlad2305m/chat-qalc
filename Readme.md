@@ -10,7 +10,7 @@ An interface to [Qalculate! qalc](https://github.com/Qalculate/libqalculate#read
 - Installs and runs portable interactive `qalc` cli calculator when you start Minecraft
 - Operates in chat screen (`T` or `/`)
 - `NumPadEnter` or `Ctrl+Enter` = Send message to qalc instead of chat
-- `Ctrl+Tab` = Convert last expressions without spaces to calculated result (escape spaces with `\`)
+- `Ctrl+Tab` = Convert last expression without spaces to calculated result (escape spaces with `\`)
 - `Shift+Enter` = Send message to qalc and replace chat field with last line of the result (You can look at the result and decide to share it with everybody by pressing `Enter`)
 - `Ctrl+Shift+Enter` = Same as `Ctrl+Enter`, but result is broadcast from your name to the whole server. And without colors. (Use when you want to share multiple lines)
 - `Shift+Tab` = Get completions
