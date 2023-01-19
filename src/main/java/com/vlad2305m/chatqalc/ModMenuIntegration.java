@@ -7,6 +7,9 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 
+import static com.vlad2305m.chatqalc.ChatQalc.executeQuietly;
+import static com.vlad2305m.chatqalc.MathEngine.initMathEngine;
+
 @Environment(EnvType.CLIENT)
 public class ModMenuIntegration implements ModMenuApi {
 
@@ -22,7 +25,9 @@ public class ModMenuIntegration implements ModMenuApi {
             @Override
             protected void init() {
                 if (!openedQalc){
+                    executeQuietly("exit");
                     MathEngine.openConfig();
+                    initMathEngine();
                     openedQalc = true;
                 }
                 close();

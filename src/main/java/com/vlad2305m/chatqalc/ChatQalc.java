@@ -29,7 +29,10 @@ public class ChatQalc implements ClientModInitializer {
         String originalText = field.getText();
         if (originalText.isBlank()) return false;
         TriConsumer<Text, MessageSignatureData, MessageIndicator> textConsumer = MinecraftClient.getInstance().inGameHud.getChatHud()::addMessage;
-        MathEngine.addMessage = (s)->textConsumer.accept(Text.literal(reformatAnsiMinecraft(s)), null, new MessageIndicator(15677346, null, Text.literal("Qalculate!"), "chatqalc"));
+        MathEngine.addMessage = (s)->{
+            if (s!=null)
+                textConsumer.accept(Text.literal(reformatAnsiMinecraft(s)), null, new MessageIndicator(15677346, null, Text.literal("Qalculate!"), "chatqalc"));
+        };
         MathEngine.eval(originalText);
         MinecraftClient.getInstance().inGameHud.getChatHud().addToMessageHistory(originalText);
         field.setText("");
@@ -44,6 +47,14 @@ public class ChatQalc implements ClientModInitializer {
         MathEngine.eval(originalText);
         MinecraftClient.getInstance().inGameHud.getChatHud().addToMessageHistory(originalText);
         field.setText("");
+        return true;
+    }
+
+    @Contract(value = "_->_")
+    public static boolean executeQuietly(String expr) {
+        if (expr.isBlank()) return false;
+        MathEngine.addMessage = (s)->{};
+        MathEngine.eval(expr);
         return true;
     }
 
@@ -63,7 +74,7 @@ public class ChatQalc implements ClientModInitializer {
         if (originalText.isBlank()) return false;
         int end = field.getCursor();
         int i;
-        for (i = originalText.lastIndexOf(" ", end); i > 0 && originalText.charAt(i-1) == '\\'; i = originalText.lastIndexOf(" ", i-1));
+        for (i = originalText.lastIndexOf(" ", end-1); i > 0 && originalText.charAt(i-1) == '\\'; i = originalText.lastIndexOf(" ", i-1));
         int start = i + 1;
         String expr = originalText.substring(start, end).replace("\\ ", "");
         if(expr.isBlank()) return false;

@@ -12,15 +12,21 @@ public class PlatformSpecificStuff {
         return System.getProperty("os.name").matches(".*Windows.*");
     }
     public static String qalcFile() {
-        if (isLinux()) return "./config/chatqalc/qalculate-4.5.1/qalc";
-        if (isWindows()) return "./config/chatqalc/qalculate/qalc.exe";
+        if (isLinux()) return qalcDir()+"qalc";
+        if (isWindows()) return qalcDir()+"qalc.exe";
         return "qalc";
     }
 
     public static String qalculateFile() {
-        if (isLinux()) return "./config/chatqalc/qalculate-4.5.1/qalculate";
-        if (isWindows()) return "./config/chatqalc/qalculate/qalculate-gtk.exe";
+        if (isLinux()) return qalcDir()+"qalculate";
+        if (isWindows()) return qalcDir()+"qalculate-gtk.exe";
         return "qalculate-gtk";
+    }
+
+    public static String qalcDir() {
+        if (isLinux()) return "./config/chatqalc/qalculate-4.5.1/";
+        if (isWindows()) return "./config/chatqalc/qalculate/";
+        return "";
     }
 
     public static String zipName() {

@@ -15,6 +15,11 @@ public class MathEngineInstaller {
                     dispatchZip(zip, confDir);}
                 PlatformSpecificStuff.linuxPerms();
             }
+            File defDir = new File("./config/chatqalc/definitions/");
+            if (!defDir.exists()) {
+                try (InputStream zip = (MathEngine.class.getResourceAsStream("/definitions.zip"))) {
+                    dispatchZip(zip, confDir);}
+            }
         } catch (IOException e) {LOGGER.error(e.toString());}
     }
 

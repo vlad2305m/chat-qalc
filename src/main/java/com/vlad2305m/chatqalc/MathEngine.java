@@ -3,6 +3,7 @@ package com.vlad2305m.chatqalc;
 import org.jetbrains.annotations.Contract;
 
 import java.io.*;
+import java.util.Map;
 import java.util.function.Consumer;
 
 import static com.vlad2305m.chatqalc.ChatQalc.LOGGER;
@@ -18,6 +19,9 @@ public class MathEngine {
             MathEngineInstaller.install();
 
             ProcessBuilder pb = new ProcessBuilder(PlatformSpecificStuff.qalcFile());
+
+            Map<String, String> env = pb.environment();
+            env.put("QALCULATE_USER_DIR", "./config/chatqalc");
 
             qalc = pb.start();
 
@@ -64,6 +68,8 @@ public class MathEngine {
 
         try {
             ProcessBuilder pb = new ProcessBuilder(PlatformSpecificStuff.qalcFile(), "-t", input);
+            Map<String, String> env = pb.environment();
+            env.put("QALCULATE_USER_DIR", "./config/chatqalc");
             Process qalc2 = pb.start();
             BufferedReader reader = qalc2.inputReader();
             new Thread(()->readLoop(reader)).start();
@@ -84,11 +90,13 @@ public class MathEngine {
 
     public static void openConfig() {
         try {
-            new ProcessBuilder(PlatformSpecificStuff.qalculateFile()).start();
-        }
-        catch (IOException e) {
+            ProcessBuilder pb = new ProcessBuilder(PlatformSpecificStuff.qalculateFile());
+            Map<String, String> env = pb.environment();
+            env.put("QALCULATE_USER_DIR", "./config/chatqalc");
+            pb.start().waitFor();
+        } catch (IOException e) {
             LOGGER.error(e.toString());
-        }
+        } catch (InterruptedException ignored){}
     }
 
     public static String reformatAnsiMinecraft(String in) {

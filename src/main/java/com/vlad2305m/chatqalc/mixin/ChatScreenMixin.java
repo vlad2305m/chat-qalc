@@ -29,6 +29,6 @@ abstract class ChatScreenMixin {
         } else if (keyCode == 258) {
             if (modifiers == 2 && ChatQalc.substituteWord(chatField)) exit.run();
             else if (modifiers == 1 && ChatQalc.getCompletions(chatField)) exit.run();
-        }
+        } else if (keyCode == 335 && ChatQalc.executeToChat(chatField)) exit.run();
     }
 }
