@@ -34,3 +34,5 @@ Most notably:
 - Comments start with `#`
 
 You can get a 30KB noinstall version if you [install](https://qalculate.github.io/downloads.html) or link Qalculate to `./minecraft/config/chatqalc/` manually or run the full version once.
+
+<a href='https://ko-fi.com/M4M4I866V' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi1.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
