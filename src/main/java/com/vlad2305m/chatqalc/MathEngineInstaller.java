@@ -10,7 +10,7 @@ public class MathEngineInstaller {
     public static void install(){
         try {
             File confDir = new File("./config/chatqalc/");
-            if (!confDir.exists()) {
+            if (!confDir.exists() || !new File(PlatformSpecificStuff.qalcFile()).exists()) {
                 try (InputStream zip = (MathEngine.class.getResourceAsStream("/qalcplatforms/" + PlatformSpecificStuff.zipName()))) {
                     dispatchZip(zip, confDir);}
                 PlatformSpecificStuff.linuxPerms();

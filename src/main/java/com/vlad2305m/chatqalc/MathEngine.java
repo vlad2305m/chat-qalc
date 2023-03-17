@@ -14,6 +14,7 @@ public class MathEngine {
     public static Consumer<String> addMessage = (s)->{};
 
     public static void initMathEngine() {
+        if (qalc!=null&&qalc.isAlive()) return;
         try {
 
             MathEngineInstaller.install();
@@ -27,7 +28,7 @@ public class MathEngine {
 
             BufferedReader reader = qalc.inputReader();
 
-            new Thread(()->readLoop(reader)).start();
+            new Thread(()->readLoop(reader, qalc)).start();
 
         }
         catch (IOException e) {
@@ -35,8 +36,25 @@ public class MathEngine {
         }
     }
 
+    private static boolean checkQalcDown(){
+        if (qalc==null){
+            addMessage.accept("Error: Could not start qalc. Did antivirus eat qalc.exe?");
+            return true;
+        }
+        if (!qalc.isAlive()) {
+            addMessage.accept("Warning: qalc down. Restarting...");
+            initMathEngine();
+        }
+        if (!qalc.isAlive()){
+            addMessage.accept("Error: Could not start qalc. Did antivirus eat qalc.exe?");
+            return true;
+        }
+        return false;
+    }
+
     @Contract(value = "!null->_", pure = true)
     public static void eval(String input) {
+        if (checkQalcDown()) return;
 
         BufferedWriter writer = qalc.outputWriter();
         try {
@@ -50,6 +68,7 @@ public class MathEngine {
 
     @Contract(value = "_->_", pure = true)
     public static void tabComp(String input) {
+        if (checkQalcDown()) return;
 
         BufferedWriter writer = qalc.outputWriter();
         try {
@@ -72,31 +91,33 @@ public class MathEngine {
             env.put("QALCULATE_USER_DIR", "./config/chatqalc");
             Process qalc2 = pb.start();
             BufferedReader reader = qalc2.inputReader();
-            new Thread(()->readLoop(reader)).start();
+            new Thread(()->readLoop(reader, qalc2)).start();
         }
         catch (IOException e) {
             LOGGER.error(e.toString());
         }
     }
 
-    private static void readLoop(BufferedReader reader){
-        while (true) {
+
+    private static void readLoop(BufferedReader reader, Process process){
+        while (process.isAlive()) {
             try { String message = reader.readLine();
                 addMessage.accept(message); }
-            catch (IOException e) {
+            catch (Throwable e) {
                 LOGGER.error(e.toString());}
         }
     }
 
-    public static void openConfig() {
+    public static Process openConfig() {
         try {
             ProcessBuilder pb = new ProcessBuilder(PlatformSpecificStuff.qalculateFile());
             Map<String, String> env = pb.environment();
             env.put("QALCULATE_USER_DIR", "./config/chatqalc");
-            pb.start().waitFor();
+            return pb.start();
         } catch (IOException e) {
             LOGGER.error(e.toString());
-        } catch (InterruptedException ignored){}
+        }
+        return null;
     }
 
     public static String reformatAnsiMinecraft(String in) {
@@ -153,6 +174,7 @@ public class MathEngine {
                 .replace("\033[0;95m", "")
                 .replace("\033[0;93m", "")
                 .replace("\033[0;97m", "")
+                .replace("−","-")
                 //.replace("\033[m", "§") //
                 ;
     }

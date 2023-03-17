@@ -24,14 +24,14 @@ public class PlatformSpecificStuff {
     }
 
     public static String qalcDir() {
-        if (isLinux()) return "./config/chatqalc/qalculate-4.5.1/";
+        if (isLinux()) return "./config/chatqalc/qalculate-4.6.0/";
         if (isWindows()) return "./config/chatqalc/qalculate/";
         return "";
     }
 
     public static String zipName() {
-        if (isLinux()) return "qalculate-4.5.1-x64.lin.zip";
-        if (isWindows()) return "qalculate-4.5.1-x64.win.zip";
+        if (isLinux()) return "qalculate-4.6.0-x64.lin.zip";
+        if (isWindows()) return "qalculate-4.6.0-x64.win.zip";
         throw new RuntimeException("Please install libqalculate or qalculate manually, check that command \"qalc\" (and optionally \"qalculate-gtk\") is working AND create folder \".minecraft/config/chatqalc/\" to confirm.");
     }
 
