@@ -16,7 +16,7 @@ An interface to [Qalculate! qalc](https://github.com/Qalculate/libqalculate#read
 - `Shift+Tab` = Get completions
 - Chat history of your queries. Very helpful.
 - Open config in ModMenu to get a graphical interface. All settings are there. (`Edit` tab)
-- Some Minecraft-related units and variables (`100it = 1 stack + 36 items`) `it` `st` `sb` `pdc` `pdcwh` `bl` `in` `nu` `gt` `iph` `hs`, `ch`|`chunk`|`chunks`
+- Some Minecraft-related units and variables (`100it = 1 stack + 36 items`) `it` `st` `sb` `pdc` `pdcwh` `gt` `iph` `hs`, `ch`|`chunk`|`chunks`
 
 ### Qalculate! features
 https://qalculate.github.io/features.html
