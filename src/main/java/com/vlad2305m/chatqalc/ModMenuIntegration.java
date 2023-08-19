@@ -5,6 +5,7 @@ import com.terraformersmc.modmenu.api.ModMenuApi;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.font.MultilineText;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
@@ -79,13 +80,13 @@ public class ModMenuIntegration implements ModMenuApi {
                 this.addDrawableChild(qalcButton.dimensions(this.width / 2 + 5, this.height / 2 + this.warning.count()*27 / 2 + 48, 195, 20).build());
             }
             private boolean toBeClosed = false;
-            public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+            public void render(DrawContext context, int mouseX, int mouseY, float delta) {
                 if (toBeClosed) close();
-                this.renderBackground(matrices);
+                this.renderBackground(context);
                 Objects.requireNonNull(this.textRenderer);
-                this.message.drawCenterWithShadow(matrices, this.width / 2, this.height / 4 - this.message.count()*9 / 2);
-                this.warning.drawCenterWithShadow(matrices, this.width / 2, this.height / 2 + this.warning.count()*9 / 2+19);
-                super.render(matrices, mouseX, mouseY, delta);
+                this.message.drawCenterWithShadow(context, this.width / 2, this.height / 4 - this.message.count()*9 / 2);
+                this.warning.drawCenterWithShadow(context, this.width / 2, this.height / 2 + this.warning.count()*9 / 2+19);
+                super.render(context, mouseX, mouseY, delta);
             }
         };
 

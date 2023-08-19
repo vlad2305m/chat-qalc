@@ -52,7 +52,7 @@ public class MathEngine {
         return false;
     }
 
-    @Contract(value = "!null->_", pure = true)
+    @Contract(value = "!null->_", pure = false)
     public static void eval(String input) {
         if (checkQalcDown()) return;
 
@@ -66,7 +66,7 @@ public class MathEngine {
         }
     }
 
-    @Contract(value = "_->_", pure = true)
+    @Contract(value = "_->_", pure = false)
     public static void tabComp(String input) {
         if (checkQalcDown()) return;
 
@@ -82,7 +82,7 @@ public class MathEngine {
         }
     }
 
-    @Contract(value = "!null->_", pure = true)
+    @Contract(value = "!null->_", pure = false)
     public static void evalSingle(String input) {
 
         try {
